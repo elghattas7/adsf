@@ -1,0 +1,1147 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="https://public-frontend-cos.metadl.com/mgx/img/favicon.png" type="image/png">
+    <title>جمعية المتبرعين بالدم إقليم فجيج بوعرفة - Association des Donneurs de Sang Figuig Bouarfa</title>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
+        }
+
+        /* RTL Support */
+        [dir="rtl"] {
+            text-align: right;
+        }
+
+        [dir="ltr"] {
+            text-align: left;
+        }
+
+        /* Language Toggle */
+        .lang-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: #dc2626;
+            border-radius: 25px;
+            padding: 5px;
+            box-shadow: 0 4px 15px rgba(220, 38, 38, 0.3);
+        }
+
+        .lang-btn {
+            background: transparent;
+            border: none;
+            color: white;
+            padding: 8px 16px;
+            cursor: pointer;
+            border-radius: 20px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .lang-btn.active {
+            background: white;
+            color: #dc2626;
+        }
+
+        .lang-btn:hover:not(.active) {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+            color: white;
+            padding: 60px 0 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="hearts" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M10,6 C10,6 4,0 0,6 C0,12 10,18 10,18 C10,18 20,12 20,6 C16,0 10,6 10,6 Z" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23hearts)"/></svg>') repeat;
+            opacity: 0.1;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 4px solid white;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .slogan {
+            max-width: 300px;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .main-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin: 20px 0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Sections */
+        .section {
+            padding: 60px 0;
+            margin: 40px 0;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #dc2626, #f87171, #dc2626);
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            color: #dc2626;
+            margin-bottom: 30px;
+            text-align: center;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: #dc2626;
+            margin: 10px auto;
+            border-radius: 2px;
+        }
+
+        .section-content {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+            border-left: 5px solid #dc2626;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(220, 38, 38, 0.1);
+        }
+
+        [dir="rtl"] .highlight-box {
+            border-left: none;
+            border-right: 5px solid #dc2626;
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .step-card {
+            background: #f9fafb;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            border: 2px solid #e5e7eb;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .step-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #dc2626, #f87171);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .step-card:hover {
+            border-color: #dc2626;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(220, 38, 38, 0.15);
+        }
+
+        .step-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .step-number {
+            background: #dc2626;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin: 0 auto 15px;
+            font-size: 1.2rem;
+        }
+
+        /* Blood Donation Benefits Section */
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .benefit-card {
+            background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+            padding: 25px;
+            border-radius: 15px;
+            border: 2px solid #fecaca;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .benefit-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #dc2626, #f87171);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(220, 38, 38, 0.15);
+        }
+
+        .benefit-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .benefit-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .donation-process-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .process-step {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            border: 2px solid #e5e7eb;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .process-step:hover {
+            border-color: #dc2626;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(220, 38, 38, 0.15);
+        }
+
+        .process-image {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 15px;
+            background: #dc2626;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+        }
+
+        .testimonial-card {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            padding: 25px;
+            border-radius: 15px;
+            margin: 20px 0;
+            border-left: 5px solid #0ea5e9;
+            position: relative;
+        }
+
+        [dir="rtl"] .testimonial-card {
+            border-left: none;
+            border-right: 5px solid #0ea5e9;
+        }
+
+        .testimonial-quote {
+            font-style: italic;
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            color: #1e40af;
+        }
+
+        .testimonial-author {
+            font-weight: bold;
+            color: #0ea5e9;
+        }
+
+        .video-container {
+            text-align: center;
+            margin: 30px 0;
+            padding: 25px;
+            background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+            border-radius: 15px;
+        }
+
+        .video-link {
+            display: inline-block;
+            background: #dc2626;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(220, 38, 38, 0.3);
+        }
+
+        .video-link:hover {
+            background: #b91c1c;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(220, 38, 38, 0.4);
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: linear-gradient(135deg, #1f2937 0%, #374151 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .contact-section .section-title {
+            color: white;
+        }
+
+        .contact-section .section-title::after {
+            background: white;
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .contact-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 25px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-5px);
+        }
+
+        .contact-icon {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            color: #f87171;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 40px 0;
+            flex-wrap: wrap;
+        }
+
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            background: #dc2626;
+            color: white;
+            border-radius: 50%;
+            text-decoration: none;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(220, 38, 38, 0.3);
+        }
+
+        .social-link:hover {
+            background: #b91c1c;
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 8px 25px rgba(220, 38, 38, 0.4);
+        }
+
+        /* Language Content */
+        .lang-content {
+            display: none;
+        }
+
+        .lang-content.active {
+            display: block;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .main-title {
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .logo-container {
+                flex-direction: column;
+            }
+
+            .lang-toggle {
+                top: 10px;
+                right: 10px;
+            }
+
+            .steps-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-info {
+                grid-template-columns: 1fr;
+            }
+
+            .social-links {
+                gap: 15px;
+            }
+
+            .social-link {
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+            }
+
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .donation-process-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 15px;
+            }
+
+            .section {
+                margin: 20px 0;
+                padding: 40px 0;
+            }
+
+            .main-title {
+                font-size: 1.6rem;
+            }
+
+            .subtitle {
+                font-size: 1rem;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section {
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        /* Print Styles */
+        @media print {
+            .lang-toggle {
+                display: none;
+            }
+            
+            .section {
+                break-inside: avoid;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Language Toggle -->
+    <div class="lang-toggle">
+        <button class="lang-btn active" onclick="switchLanguage('ar')">العربية</button>
+        <button class="lang-btn" onclick="switchLanguage('fr')">Français</button>
+    </div>
+
+    <!-- Arabic Content -->
+    <div id="ar-content" class="lang-content active">
+        <!-- Header -->
+        <header class="header">
+            <div class="container">
+                <div class="header-content">
+                 <div class="logo-container">
+                        <img src="logo.jpg" alt="شعار الجمعية" class="logo">
+                        <img src="slogan.png" alt="شعار الجمعية" class="slogan">
+                    </div>
+                                    <h1 class="main-title">جمعية المتبرعين بالدم إقليم فجيج بوعرفة </h1>
+                    <p class="subtitle">قطرة دم تنقذ حياة - معاً من أجل مستقبل أفضل</p>
+                </div>
+            </div>
+        </header>
+
+        <div class="container">
+            <!-- 1. Welcome Section -->
+            <section class="section">
+                <h2 class="section-title">مرحباً بكم</h2>
+                <div class="section-content">
+                    <p>أهلاً وسهلاً بكم في الموقع الرسمي لجمعية المتبرعين بالدم إقليم فجيج ببوعرفة. نحن جمعية تطوعية تهدف إلى نشر ثقافة التبرع بالدم وإنقاذ الأرواح في منطقتنا الحبيبة.</p>
+                    
+                    <div class="highlight-box">
+                        <strong>رسالتنا:</strong> العمل على توفير احتياجات المرضى من الدم ومشتقاته، وتوعية المجتمع بأهمية التبرع بالدم كعمل إنساني نبيل يساهم في إنقاذ الأرواح.
+                    </div>
+                </div>
+            </section>
+
+            <!-- 2. About Section -->
+            <section class="section">
+                <h2 class="section-title">عن الجمعية</h2>
+                <div class="section-content">
+                    <h3 style="color: #dc2626; margin-bottom: 15px;">تاريخنا وأهدافنا</h3>
+                    <p>تأسست جمعية المتبرعين بالدم إقليم فجيج ببوعرفة بهدف سد الحاجة الملحة للدم في المنطقة وتنظيم حملات التبرع بشكل منتظم ومدروس.</p>
+                    
+                    <h3 style="color: #dc2626; margin: 25px 0 15px;">قيمنا</h3>
+                    <ul style="list-style-type: none; padding: 0;">
+                        <li style="margin: 10px 0; padding: 10px; background: #fef2f2; border-radius: 8px;">🤝 التضامن والتكافل الاجتماعي</li>
+                        <li style="margin: 10px 0; padding: 10px; background: #fef2f2; border-radius: 8px;">❤️ العمل الإنساني والتطوعي</li>
+                        <li style="margin: 10px 0; padding: 10px; background: #fef2f2; border-radius: 8px;">🎯 الشفافية والمصداقية</li>
+                        <li style="margin: 10px 0; padding: 10px; background: #fef2f2; border-radius: 8px;">🌟 الجودة والاحترافية</li>
+                    </ul>
+
+                    <div class="highlight-box">
+                        <h4 style="color: #dc2626;">أهمية التبرع بالدم</h4>
+                        <p>التبرع بالدم عمل إنساني عظيم يمكن أن ينقذ حياة إنسان أو أكثر. كل تبرع واحد يمكن أن يساعد ثلاثة مرضى مختلفين، ولا يوجد بديل صناعي للدم البشري.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 3. Blood Donation Benefits Section -->
+            <section class="section">
+                <h2 class="section-title">فوائد التبرع بالدم</h2>
+                <div class="section-content">
+                    <p style="text-align: center; font-size: 1.2rem; margin-bottom: 30px;">التبرع بالدم عمل إنساني عظيم له فوائد جمة للمتبرع والمجتمع</p>
+                    
+                    <div class="benefits-grid">
+                        <div class="benefit-card">
+                            <div class="benefit-icon">❤️</div>
+                            <h4 style="color: #dc2626; margin-bottom: 15px;">فوائد صحية للمتبرع</h4>
+                            <ul style="text-align: right; padding-right: 20px;">
+                                <li>تحفيز إنتاج خلايا دم جديدة</li>
+                                <li>تقليل مخاطر أمراض القلب</li>
+                                <li>خفض مستوى الحديد الزائد في الدم</li>
+                                <li>فحص طبي مجاني شامل</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="benefit-card">
+                            <div class="benefit-icon">🌟</div>
+                            <h4 style="color: #dc2626; margin-bottom: 15px;">فوائد نفسية واجتماعية</h4>
+                            <ul style="text-align: right; padding-right: 20px;">
+                                <li>الشعور بالرضا والسعادة</li>
+                                <li>المساهمة في إنقاذ الأرواح</li>
+                                <li>تعزيز الروح التطوعية</li>
+                                <li>بناء مجتمع متضامن</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="benefit-card">
+                            <div class="benefit-icon">🏥</div>
+                            <h4 style="color: #dc2626; margin-bottom: 15px;">فوائد للمجتمع</h4>
+                            <ul style="text-align: right; padding-right: 20px;">
+                                <li>توفير مخزون آمن من الدم</li>
+                                <li>مساعدة المرضى والمصابين</li>
+                                <li>دعم العمليات الجراحية</li>
+                                <li>مساعدة مرضى السرطان</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="highlight-box">
+                        <h4 style="color: #dc2626;">هل تعلم؟</h4>
+                        <p><strong>تبرع واحد بالدم يمكن أن ينقذ حياة 3 أشخاص!</strong> كل 450 مل من الدم يمكن تقسيمها إلى مكونات مختلفة: خلايا الدم الحمراء، البلازما، والصفائح الدموية.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 4. Blood Donation Process Section -->
+            <section class="section">
+                <h2 class="section-title">كيف تتم عملية التبرع بالدم</h2>
+                <div class="section-content">
+                    <p style="text-align: center; font-size: 1.2rem; margin-bottom: 30px;">عملية التبرع بالدم آمنة وبسيطة وتستغرق حوالي 45 دقيقة</p>
+                    
+                    <div class="donation-process-grid">
+                        <div class="process-step">
+                            <div class="process-image">📋</div>
+                            <h4 style="color: #dc2626;">1. التسجيل</h4>
+                            <p>ملء استمارة التبرع والتاريخ الصحي</p>
+                        </div>
+                        
+                        <div class="process-step">
+                            <div class="process-image">🩺</div>
+                            <h4 style="color: #dc2626;">2. الفحص الطبي</h4>
+                            <p>قياس الضغط والنبض ودرجة الحرارة</p>
+                        </div>
+                        
+                        <div class="process-step">
+                            <div class="process-image">🔬</div>
+                            <h4 style="color: #dc2626;">3. فحص الدم</h4>
+                            <p>اختبار مستوى الهيموجلوبين وفصيلة الدم</p>
+                        </div>
+                        
+                        <div class="process-step">
+                            <div class="process-image">💉</div>
+                            <h4 style="color: #dc2626;">4. سحب الدم</h4>
+                            <p>عملية آمنة تستغرق 10-15 دقيقة</p>
+                        </div>
+                        
+                        <div class="process-step">
+                            <div class="process-image">🥤</div>
+                            <h4 style="color: #dc2626;">5. الراحة</h4>
+                            <p>تناول المرطبات وفترة راحة قصيرة</p>
+                        </div>
+                        
+                        <div class="process-step">
+                            <div class="process-image">🏆</div>
+                            <h4 style="color: #dc2626;">6. شهادة التقدير</h4>
+                            <p>الحصول على شهادة شكر وتقدير</p>
+                        </div>
+                    </div>
+
+                    <div class="video-container">
+                        <h4 style="color: #dc2626; margin-bottom: 15px;">شاهد فيديو توضيحي عن عملية التبرع بالدم</h4>
+                        <a href="DonSang.mp4" target="_blank" rel="noopener noreferrer" class="video-link">
+                            🎥 مشاهدة الفيديو التوضيحي
+                        </a>
+                        <p style="margin-top: 15px; font-size: 0.9rem; color: #666;">فيديو تعليمي يشرح جميع مراحل التبرع بالدم بالتفصيل</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 5. Testimonials Section -->
+            <section class="section">
+                <h2 class="section-title">شهادات وتجارب</h2>
+                <div class="section-content">
+                    <p style="text-align: center; font-size: 1.2rem; margin-bottom: 30px;">شهادات حقيقية من أشخاص استفادوا من الدم المتبرع به</p>
+                    
+                    <div class="testimonial-card">
+                        <div class="testimonial-quote">
+                            "كنت أعاني من نزيف حاد بعد حادث سير، ولولا المتبرعين الكرام لما كنت هنا اليوم. أشكر كل من تبرع بدمه لإنقاذ حياتي وحياة آخرين. التبرع بالدم عمل إنساني عظيم."
+                        </div>
+                        <div class="testimonial-author">- أحمد المغربي، 35 سنة</div>
+                    </div>
+                    
+                    <div class="testimonial-card">
+                        <div class="testimonial-quote">
+                            "ابنتي كانت تحتاج لعملية جراحية عاجلة ونقل دم. بفضل المتبرعين تمت العملية بنجاح وهي الآن بصحة جيدة. لا يمكنني أن أعبر عن امتناني لهؤلاء الأبطال المجهولين."
+                        </div>
+                        <div class="testimonial-author">- فاطمة الزهراء، أم لطفلة 8 سنوات</div>
+                    </div>
+                    
+                    <div class="testimonial-card">
+                        <div class="testimonial-quote">
+                            "أعاني من مرض الثلاسيميا وأحتاج لنقل دم بانتظام. المتبرعون هم سبب استمراري في الحياة. كل قطرة دم تعني لي الكثير. شكراً لكل متبرع كريم."
+                        </div>
+                        <div class="testimonial-author">- يوسف العلوي، 28 سنة</div>
+                    </div>
+                    
+                    <div class="testimonial-card">
+                        <div class="testimonial-quote">
+                            "أثناء الولادة واجهت مضاعفات خطيرة وفقدت كمية كبيرة من الدم. نقل الدم أنقذ حياتي وحياة طفلي. أنا ممتنة إلى الأبد للمتبرعين الذين لم أرهم لكنهم أنقذوا حياتنا."
+                        </div>
+                        <div class="testimonial-author">- مريم الحسني، 29 سنة</div>
+                    </div>
+
+                    <div class="highlight-box">
+                        <h4 style="color: #dc2626;">رسالة من طبيب</h4>
+                        <p><em>"في كل يوم نرى معجزات تحدث بفضل المتبرعين بالدم. من مرضى السرطان إلى ضحايا الحوادث، ومن النساء أثناء الولادة إلى الأطفال المرضى - الدم المتبرع به يعيد الأمل والحياة. كل متبرع هو بطل حقيقي."</em></p>
+                        <div style="text-align: left; margin-top: 10px; font-weight: bold;">- د. محمد الطبيب، مدير بنك الدم</div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Contact Section -->
+        <section class="contact-section">
+            <div class="container">
+                <h2 class="section-title">تواصل معنا</h2>
+                
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">📍</div>
+                        <h4>العنوان</h4>
+                        <p>شارع المسيرة الخضراء، بوعرفة</p>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">📞</div>
+                        <h4>الهاتف</h4>
+                        <p>0766256075</p>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">✉️</div>
+                        <h4>البريد الإلكتروني</h4>
+                        <p>adsbouarfafiguig@gmail.com</p>
+                    </div>
+                </div>
+
+                <div class="social-links">
+                    <a href="https://web.facebook.com/p/%D8%AC%D9%85%D8%B9%D9%8A%D8%A9-%D8%A7%D9%84%D9%85%D8%AA%D8%A8%D8%B1%D8%B9%D9%8A%D9%86-%D8%A8%D8%A7%D9%84%D8%AF%D9%85-%D8%A5%D9%82%D9%84%D9%8A%D9%85-%D9%81%D8%AC%D9%8A%D8%AC-%D8%A8%D8%A8%D9%88%D8%B9%D8%B1%D9%81%D8%A9-100066527778338/?_rdc=1&_rdr" class="social-link" title="فيسبوك" target="_blank" rel="noopener noreferrer">
+                        <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                        </svg>
+                    </a>
+                    <a href="https://www.youtube.com/@ADSFiguigBouarfa" class="social-link" title="يوتيوب" target="_blank" rel="noopener noreferrer">
+                        <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                        </svg>
+                    </a>
+                    <a href="https://www.instagram.com/adsfiguigbouarfa/" class="social-link" title="إنستغرام" target="_blank" rel="noopener noreferrer">
+                        <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                        </svg>
+                    </a>
+                </div>
+
+                <p style="margin-top: 40px; opacity: 0.8;">
+                    © 2025 جمعية المتبرعين بالدم إقليم فجيج ببوعرفة - جميع الحقوق محفوظة
+                </p>
+            </div>
+        </section>
+    </div>
+
+    <!-- French Content -->
+    <div id="fr-content" class="lang-content">
+        <!-- Header -->
+        <header class="header">
+            <div class="container">
+                <div class="header-content">
+                    <div class="logo-container">
+                        <img src="logo.jpg" alt="Logo de l'association" class="logo">
+                        <img src="slogan.png" alt="Slogan de l'association" class="slogan">
+                    </div>
+                    <h1 class="main-title">Association des Donneurs de Sang Province de Figuig Bouarfa </h1>
+                    <p class="subtitle">Une goutte de sang sauve une vie - Ensemble pour un avenir meilleur</p>
+                </div>
+            </div>
+        </header>
+
+        <div class="container">
+            <!-- 1. Welcome Section -->
+            <section class="section">
+                <h2 class="section-title">Bienvenue</h2>
+                <div class="section-content">
+                    <p>Bienvenue sur le site officiel de l'Association des Donneurs de Sang Figuig à Bouarfa. Nous sommes une association bénévole qui vise à promouvoir la culture du don de sang et à sauver des vies dans notre région bien-aimée.</p>
+                    
+                    <div class="highlight-box">
+                        <strong>Notre mission :</strong> Œuvrer pour répondre aux besoins des patients en sang et ses dérivés, et sensibiliser la communauté à l'importance du don de sang comme acte humanitaire noble qui contribue à sauver des vies.
+                    </div>
+                </div>
+            </section>
+
+            <!-- 2. About Section -->
+            <section class="section">
+                <h2 class="section-title">À propos de l'association</h2>
+                <div class="section-content">
+                    <h3 style="color: #dc2626; margin-bottom: 15px;">Notre histoire et nos objectifs</h3>
+                    <p>L'Association des Donneurs de Sang Figuig à Bouarfa a été créée pour répondre au besoin urgent de sang dans la région et organiser des campagnes de don de manière régulière et réfléchie.</p>
+                    
+                    <h3 style="color: #dc2626; margin: 25px 0 15px;">Nos valeurs</h3>
+                    <ul style="list-style-type: none; padding: 0;">
+                        <li style="margin: 10px 0; padding: 10px; background: #fef2f2; border-radius: 8px;">🤝 Solidarité et cohésion sociale</li>
+                        <li style="margin: 10px 0; padding: 10px; background: #fef2f2; border-radius: 8px;">❤️ Action humanitaire et bénévolat</li>
+                        <li style="margin: 10px 0; padding: 10px; background: #fef2f2; border-radius: 8px;">🎯 Transparence et crédibilité</li>
+                        <li style="margin: 10px 0; padding: 10px; background: #fef2f2; border-radius: 8px;">🌟 Qualité et professionnalisme</li>
+                    </ul>
+
+                    <div class="highlight-box">
+                        <h4 style="color: #dc2626;">L'importance du don de sang</h4>
+                        <p>Le don de sang est un acte humanitaire formidable qui peut sauver la vie d'une personne ou plus. Chaque don peut aider trois patients différents, et il n'existe aucun substitut artificiel au sang humain.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 3. Blood Donation Benefits Section -->
+            <section class="section">
+                <h2 class="section-title">Bienfaits du don de sang</h2>
+                <div class="section-content">
+                    <p style="text-align: center; font-size: 1.2rem; margin-bottom: 30px;">Le don de sang est un acte humanitaire formidable aux multiples bienfaits pour le donneur et la société</p>
+                    
+                    <div class="benefits-grid">
+                        <div class="benefit-card">
+                            <div class="benefit-icon">❤️</div>
+                            <h4 style="color: #dc2626; margin-bottom: 15px;">Bienfaits pour la santé du donneur</h4>
+                            <ul style="text-align: left; padding-left: 20px;">
+                                <li>Stimulation de la production de nouvelles cellules sanguines</li>
+                                <li>Réduction des risques de maladies cardiaques</li>
+                                <li>Diminution du taux de fer excédentaire</li>
+                                <li>Bilan de santé gratuit et complet</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="benefit-card">
+                            <div class="benefit-icon">🌟</div>
+                            <h4 style="color: #dc2626; margin-bottom: 15px;">Bienfaits psychologiques et sociaux</h4>
+                            <ul style="text-align: left; padding-left: 20px;">
+                                <li>Sentiment de satisfaction et de bonheur</li>
+                                <li>Contribution au sauvetage de vies</li>
+                                <li>Renforcement de l'esprit de bénévolat</li>
+                                <li>Construction d'une société solidaire</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="benefit-card">
+                            <div class="benefit-icon">🏥</div>
+                            <h4 style="color: #dc2626; margin-bottom: 15px;">Bienfaits pour la communauté</h4>
+                            <ul style="text-align: left; padding-left: 20px;">
+                                <li>Constitution d'une réserve sécurisée de sang</li>
+                                <li>Aide aux patients et blessés</li>
+                                <li>Soutien aux interventions chirurgicales</li>
+                                <li>Assistance aux patients cancéreux</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="highlight-box">
+                        <h4 style="color: #dc2626;">Le saviez-vous ?</h4>
+                        <p><strong>Un seul don de sang peut sauver la vie de 3 personnes !</strong> Chaque 450 ml de sang peut être divisé en différents composants : globules rouges, plasma et plaquettes.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 4. Blood Donation Process Section -->
+            <section class="section">
+                <h2 class="section-title">Comment se déroule le don de sang</h2>
+                <div class="section-content">
+                    <p style="text-align: center; font-size: 1.2rem; margin-bottom: 30px;">Le processus de don de sang est sûr, simple et dure environ 45 minutes</p>
+                    
+                    <div class="donation-process-grid">
+                        <div class="process-step">
+                            <div class="process-image">📋</div>
+                            <h4 style="color: #dc2626;">1. Inscription</h4>
+                            <p>Remplissage du formulaire de don et de l'historique médical</p>
+                        </div>
+                        
+                        <div class="process-step">
+                            <div class="process-image">🩺</div>
+                            <h4 style="color: #dc2626;">2. Examen médical</h4>
+                            <p>Mesure de la tension, du pouls et de la température</p>
+                        </div>
+                        
+                        <div class="process-step">
+                            <div class="process-image">🔬</div>
+                            <h4 style="color: #dc2626;">3. Test sanguin</h4>
+                            <p>Vérification du taux d'hémoglobine et du groupe sanguin</p>
+                        </div>
+                        
+                        <div class="process-step">
+                            <div class="process-image">💉</div>
+                            <h4 style="color: #dc2626;">4. Prélèvement</h4>
+                            <p>Processus sécurisé qui dure 10-15 minutes</p>
+                        </div>
+                        
+                        <div class="process-step">
+                            <div class="process-image">🥤</div>
+                            <h4 style="color: #dc2626;">5. Repos</h4>
+                            <p>Collation et période de repos courte</p>
+                        </div>
+                        
+                        <div class="process-step">
+                            <div class="process-image">🏆</div>
+                            <h4 style="color: #dc2626;">6. Certificat</h4>
+                            <p>Remise d'un certificat de remerciement</p>
+                        </div>
+                    </div>
+
+                    <div class="video-container">
+                        <h4 style="color: #dc2626; margin-bottom: 15px;">Regardez une vidéo explicative sur le processus de don de sang</h4>
+                        <a href="DonSang.mp4" target="_blank" rel="noopener noreferrer" class="video-link">
+                            🎥 Voir la vidéo explicative
+                        </a>
+                        <p style="margin-top: 15px; font-size: 0.9rem; color: #666;">Vidéo éducative expliquant toutes les étapes du don de sang en détail</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 5. Testimonials Section -->
+            <section class="section">
+                <h2 class="section-title">Témoignages et expériences</h2>
+                <div class="section-content">
+                    <p style="text-align: center; font-size: 1.2rem; margin-bottom: 30px;">Témoignages réels de personnes qui ont bénéficié du sang donné</p>
+                    
+                    <div class="testimonial-card">
+                        <div class="testimonial-quote">
+                            "Je souffrais d'une hémorragie grave après un accident de voiture, et sans les généreux donneurs, je ne serais pas là aujourd'hui. Je remercie tous ceux qui ont donné leur sang pour sauver ma vie et celle d'autres. Le don de sang est un acte humanitaire formidable."
+                        </div>
+                        <div class="testimonial-author">- Ahmed El Maghribi, 35 ans</div>
+                    </div>
+                    
+                    <div class="testimonial-card">
+                        <div class="testimonial-quote">
+                            "Ma fille avait besoin d'une chirurgie urgente et d'une transfusion sanguine. Grâce aux donneurs, l'opération s'est déroulée avec succès et elle est maintenant en bonne santé. Je ne peux exprimer ma gratitude envers ces héros anonymes."
+                        </div>
+                        <div class="testimonial-author">- Fatima Zahra, mère d'une fillette de 8 ans</div>
+                    </div>
+                    
+                    <div class="testimonial-card">
+                        <div class="testimonial-quote">
+                            "Je souffre de thalassémie et j'ai besoin de transfusions sanguines régulières. Les donneurs sont la raison de ma survie. Chaque goutte de sang signifie beaucoup pour moi. Merci à chaque donneur généreux."
+                        </div>
+                        <div class="testimonial-author">- Youssef El Alaoui, 28 ans</div>
+                    </div>
+                    
+                    <div class="testimonial-card">
+                        <div class="testimonial-quote">
+                            "Pendant l'accouchement, j'ai fait face à des complications graves et j'ai perdu beaucoup de sang. La transfusion a sauvé ma vie et celle de mon enfant. Je suis éternellement reconnaissante envers les donneurs que je n'ai jamais vus mais qui ont sauvé nos vies."
+                        </div>
+                        <div class="testimonial-author">- Maryam El Hasni, 29 ans</div>
+                    </div>
+
+                    <div class="highlight-box">
+                        <h4 style="color: #dc2626;">Message d'un médecin</h4>
+                        <p><em>"Chaque jour, nous voyons des miracles se produire grâce aux donneurs de sang. Des patients cancéreux aux victimes d'accidents, des femmes en couches aux enfants malades - le sang donné redonne espoir et vie. Chaque donneur est un véritable héros."</em></p>
+                        <div style="text-align: right; margin-top: 10px; font-weight: bold;">- Dr. Mohamed Le Médecin, directeur de la banque de sang</div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Contact Section -->
+        <section class="contact-section">
+            <div class="container">
+                <h2 class="section-title">Contactez-nous</h2>
+                
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">📍</div>
+                        <h4>Adresse</h4>
+                        <p>BD la marche verte Bouarfa</p>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">📞</div>
+                        <h4>Téléphone</h4>
+                        <p>0766256075</p>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">✉️</div>
+                        <h4>Email</h4>
+                        <p>adsbouarfafiguig@gmail.com</p>
+                    </div>
+                </div>
+
+                <div class="social-links">
+                    <a href="https://web.facebook.com/p/%D8%AC%D9%85%D8%B9%D9%8A%D8%A9-%D8%A7%D9%84%D9%85%D8%AA%D8%A8%D8%B1%D8%B9%D9%8A%D9%86-%D8%A8%D8%A7%D9%84%D8%AF%D9%85-%D8%A5%D9%82%D9%84%D9%8A%D9%85-%D9%81%D8%AC%D9%8A%D8%AC-%D8%A8%D8%A8%D9%88%D8%B9%D8%B1%D9%81%D8%A9-100066527778338/?_rdc=1&_rdr" class="social-link" title="Facebook" target="_blank" rel="noopener noreferrer">
+                        <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                        </svg>
+                    </a>
+                    <a href="https://www.youtube.com/@ADSFiguigBouarfa" class="social-link" title="YouTube" target="_blank" rel="noopener noreferrer">
+                        <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                        </svg>
+                    </a>
+                    <a href="https://www.instagram.com/adsfiguigbouarfa/" class="social-link" title="Instagram" target="_blank" rel="noopener noreferrer">
+                        <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                        </svg>
+                    </a>
+                </div>
+
+                <p style="margin-top: 40px; opacity: 0.8;">
+                    © 2025 Association des Donneurs de Sang Figuig Bouarfa - Tous droits réservés
+                </p>
+            </div>
+        </section>
+    </div>
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        // Language switching functionality
+        function switchLanguage(lang) {
+            const arContent = document.getElementById('ar-content');
+            const frContent = document.getElementById('fr-content');
+            const arBtn = document.querySelector('.lang-btn[onclick="switchLanguage(\'ar\')"]');
+            const frBtn = document.querySelector('.lang-btn[onclick="switchLanguage(\'fr\')"]');
+            const html = document.documentElement;
+
+            if (lang === 'ar') {
+                arContent.classList.add('active');
+                frContent.classList.remove('active');
+                arBtn.classList.add('active');
+                frBtn.classList.remove('active');
+                html.setAttribute('lang', 'ar');
+                html.setAttribute('dir', 'rtl');
+            } else {
+                frContent.classList.add('active');
+                arContent.classList.remove('active');
+                frBtn.classList.add('active');
+                arBtn.classList.remove('active');
+                html.setAttribute('lang', 'fr');
+                html.setAttribute('dir', 'ltr');
+            }
+        }
+
+        // Smooth scrolling for anchor links
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add smooth scrolling animation on load
+            const sections = document.querySelectorAll('.section');
+            
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            sections.forEach(section => {
+                section.style.opacity = '0';
+                section.style.transform = 'translateY(30px)';
+                section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(section);
+            });
+
+            // Add click animation to social links
+            const socialLinks = document.querySelectorAll('.social-link');
+            socialLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    this.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        this.style.transform = '';
+                        // Open the link after animation
+                        window.open(this.href, '_blank');
+                    }, 150);
+                });
+            });
+
+            // Add hover effect to step cards
+            const stepCards = document.querySelectorAll('.step-card');
+            stepCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-5px) scale(1.02)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                });
+            });
+        });
+
+        // Add loading animation
+        window.addEventListener('load', function() {
+            document.body.style.opacity = '0';
+            document.body.style.transition = 'opacity 0.5s ease';
+            setTimeout(() => {
+                document.body.style.opacity = '1';
+            }, 100);
+        });
+    </script>
+</body>
+
+</html>
